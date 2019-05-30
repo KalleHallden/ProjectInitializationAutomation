@@ -24,6 +24,7 @@ def create():
     python_button.send_keys(folderName)
     python_button = browser.find_element_by_css_selector('button.first-in-line')
     python_button.submit()
+    browser.quit()
 
 if __name__ == "__main__":
     create()
