@@ -17,5 +17,5 @@ To run the script type in 'create <name of your folder>'
 ```bash
 USERNAME="Username123"
 PASSWORD="Password123"
-FILEPATH="/path/to/your/project"
+FILEPATH="/path/to/your/project/"
 ```
