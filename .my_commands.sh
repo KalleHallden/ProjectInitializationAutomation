@@ -1,8 +1,6 @@
 #!/bin/bash
+source ./.env
 
-PROJECTS_PATH="$HOME/Documents/projects/" # ADD your path
-USERNAME="" # ADD your user name
-PASSWORD="" # ADD your password or leave it blank the console will ask you to enter it
 CREDINTIALS=$USERNAME
 if [[ "$PASSWORD" != "" ]]; then
     CREDINTIALS="$USERNAME:$PASSWORD"
