@@ -3,7 +3,12 @@
 git clone "https://github.com/KalleHallden/ProjectInitializationAutomation.git"
 cd ProjectInitializationAutomation
 ```
-Then go to .my_commands.sh and set the path, username and password to be your path, username and password.
+Then go to ```.env.example``` rename it to ```.env``` then set:
+- ```PROJECTS_PATH```: As your projects path.
+- ```USERNAME```: Your github username.
+- ```PASSWORD```: Your github password. <br />
+You are able to leave the password empty and the shell will ask you to enter it when running the command. <br />
+
 To use the command on the current terminal session run this command into the terminal.
 ```bash
 source ~/.my_commands.sh
