@@ -1,5 +1,5 @@
 # git-create
-Easily create and initialize a Github project with a single command. `git-create` creates a new directory on your machine, initializes a Github repo with README and pushes it to the configured Github account.
+Automate creating a Github project with a single command. `git-create` creates a new directory on your machine, initializes a Github repo with README and pushes it to the configured Github account.
 
 ## Installation
 1) Clone this project
@@ -14,6 +14,4 @@ source .my_commands.sh
 ```
 
 ## Usage
-```
-To run the script type in 'create <name of your folder>'
-```
+To run the script type in `create <name of your folder>`
