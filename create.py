@@ -1,11 +1,13 @@
 import sys
 import os
 from github import Github
+from dotenv import load_dotenv
 
-path = "/Users/kalle/Documents/Projects/MyProjects/"
+load_dotenv()
 
-username = "" #Insert your github username here
-password = "" #Insert your github password here
+path = os.getenv("FILEPATH")
+username = os.getenv("USERNAME")
+password = os.getenv("PASSWORD")
 
 def create():
     folderName = str(sys.argv[1])

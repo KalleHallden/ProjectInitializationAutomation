@@ -1,14 +1,19 @@
-### Install: 
-```bash
-git clone "https://github.com/KalleHallden/ProjectInitializationAutomation.git"
-cd ProjectInitializationAutomation
+# git-create
+Easily create and initialize a Github project with a single command. `git-create` creates a new directory on your machine, initializes a Github repo with README and pushes it to the configured Github account.
+
+## Installation
+1) Clone this project
+2) Navigate to the this project directory
+3) Copy the `.env.example` file to a new `.env` file and update the values.
+4) Run each of the following commands:
+
+```
 pip install -r requirements.txt
-source ~/.my_commands.sh
-Then go to create.py and set the username and password to be your username and password.
-Also make sure to change all directories to your directories so it should be '/Users/<your username>/path/to/your/project'
+	
+source .my_commands.sh
 ```
 
-### Usage:
-```bash
+## Usage
+```
 To run the script type in 'create <name of your folder>'
 ```
