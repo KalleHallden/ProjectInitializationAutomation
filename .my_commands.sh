@@ -1,8 +1,8 @@
 #!/bin/bash
 
-function create() {
-    source .env
-    python3 create.py $1
+function git-create() {
+    source ~/path/to/.env
+    python3 ~/path/to/create.py $1
     cd $FILEPATH$1
     touch README.md
     git init

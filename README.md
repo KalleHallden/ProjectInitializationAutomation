@@ -13,9 +13,25 @@ This project requires Python3 and PIP. You'll also need to ensure your SSH keys 
 
 ```
 pip install -r requirements.txt
-	
-source .my_commands.sh
 ```
 
 ## Usage
-To run the script type in `create <name of your project>`
+### One Time Use
+Run the following in the project directory.
+
+```
+source .my_commands.sh
+```
+
+Run the following inside this project's directory.
+```
+git-create <name of your project>
+```
+
+### Make Command Global
+Add the contents of the `.my_commands.sh` file into your `bash_profile`. Restart your terminal after updating the file.
+
+To run the script globally, type the following in any directory. It will save your new Github project in the folder you specified in your `.env` file.
+```
+git-create <name of your project>
+```
