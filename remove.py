@@ -10,27 +10,15 @@ browser.get('http://github.com/login')
 
 
 def remove():
-    python_button = browser.find_elements_by_xpath("//input[@name='login']")[0]
-    python_button.send_keys(username)
-    python_button = browser.find_elements_by_xpath(
-        "//input[@name='password']")[0]
-    python_button.send_keys(password)
-    python_button = browser.find_elements_by_xpath(
-        "//input[@name='commit']")[0]
-    python_button.click()
+    browser.find_elements_by_xpath("//input[@name='login']")[0].send_keys(username)
+    browser.find_elements_by_xpath("//input[@name='password']")[0].send_keys(password)
+    browser.find_elements_by_xpath("//input[@name='commit']")[0].click()
     browser.get('https://github.com/silv4b/' + reponame + '/settings')
-
-    python_button = browser.find_elements_by_xpath(
-        '//*[@id="options_bucket"]/div[9]/ul/li[4]/details/summary')[0]
-    python_button.click()
-    python_button = browser.find_elements_by_xpath(
-        '//*[@id="options_bucket"]/div[9]/ul/li[4]/details/details-dialog/div[3]/form/p/input')[0]
-    python_button.send_keys(reponame)
-
-    python_button = browser.find_elements_by_xpath(
-        '//*[@id="options_bucket"]/div[9]/ul/li[4]/details/details-dialog/div[3]/form/button')[0]
-    python_button.click()
-
+    browser.find_elements_by_xpath('//*[@id="options_bucket"]/div[9]/ul/li[4]/details/summary')[0].click()
+    browser.find_elements_by_xpath(
+        '//*[@id="options_bucket"]/div[9]/ul/li[4]/details/details-dialog/div[3]/form/p/input')[0].send_keys(reponame)
+    browser.find_elements_by_xpath(
+        '//*[@id="options_bucket"]/div[9]/ul/li[4]/details/details-dialog/div[3]/form/button')[0].click()
     browser.get("https://github.com/" + username)
 
 
