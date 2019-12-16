@@ -1,37 +1,37 @@
 # git-create
+
+[![Build Status](https://travis-ci.org/Justintime50/git-create.svg?branch=master)](https://travis-ci.org/Justintime50/git-create)
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+
 Automate creating a Github project with a single command. `git-create` creates a new directory on your machine, initializes a Github repo with a README and pushes it to the configured Github account.
 
 ## Installation
 This project requires Python3 and PIP. You'll also need to ensure your SSH keys are stored in Github for the machine you're creating projects from.
 
-### Setup
-1) Clone this project
-2) Navigate to the this project directory
-3) Copy the `.env.example` file to a new `.env` file and update the values.
-4) **Optional**: [Setup VS Code launch from cli](https://code.visualstudio.com/docs/setup/mac)
-5) Run each of the following commands:
+1) Run `cp .env.example .env` add your Github key.
+2) **Optional**: [Setup VS Code launch from cli](https://code.visualstudio.com/docs/setup/mac)
+3) Install project dependencies:
 
-```
+```bash
 pip install -r requirements.txt
 ```
 
+4) Add `create_repo.sh` to your path or add an alias.
+
+```bash
+alias git-create='/path/to/this/project/git-create/create_repo.sh'
+```
+
+5) Finally, reload your profile `source ~/.zshrc`, or start a new terminal session.
+
 ## Usage
-### One Time Use
-Run the following in the project directory.
-
+Run the following command in any directory. It will clone your new Github project in the path specified as the parameter
 ```
-source .my_commands.sh
+git-create <path to project>
 ```
 
-Run the following inside this project's directory.
+## Example
+Create repo `foobar`, and clone it into `~/Desktop/foobar` 
 ```
-git-create <name of your project>
-```
-
-### Make Command Global
-Add the contents of the `.my_commands.sh` file into your `bash_profile`. Restart your terminal after updating the file.
-
-To run the script globally, type the following in any directory. It will save your new Github project in the folder you specified in your `.env` file.
-```
-git-create <name of your project>
+git-create ~/Desktop/foobar
 ```
