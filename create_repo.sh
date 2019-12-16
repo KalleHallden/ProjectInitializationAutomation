@@ -1,18 +1,19 @@
 #!/bin/bash
 
 function git-create() {
+    # shellcheck disable=SC1091
     source .env
 
     path=$1
-    repo_name=`echo $path |sed 's/.*\///'`
+    repo_name=$(echo "$path" |sed "s/.*\///")
 
     # You may need to change python3 to python depending on your setup.
-    url=$(python3 create.py $path $repo_name 2>&1)
+    url=$(python3 create.py "$path" "$repo_name" 2>&1)
     echo "URL: ${url}"
 
-    git clone $url $path
+    git clone "$url" "$path"
 }
 
 cd "$(dirname "$0")" || exit
 
-git-create $1
+git-create "$1"
