@@ -7,6 +7,9 @@ python:
 
 install: pip install -r requirements.txt
 
+before_script:
+    - cp .env.example .env
+
 script: 
     - pylint create.py
     - shellcheck create_repo.sh
