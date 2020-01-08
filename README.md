@@ -10,5 +10,6 @@ Also make sure to change all directories to your directories so it should be '/U
 
 ### Usage:
 ```bash
-To run the script type in 'create <name of your folder>'
+To create project type in 'create <name of your folder>'
+To remove project type in 'remove <name of your folder>'
 ```
