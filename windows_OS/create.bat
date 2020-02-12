@@ -8,8 +8,10 @@ If "%1"=="" (
     echo "error"
 ) else ( 
     if "%2"=="" (
-        python local.py %fn%
+        python remote.py %fn% %flag%
         ) else (
-            python remote.py %fn% %flag%
+            if "%2"=="l" (
+                python local.py %fn%
+            )
         )
     )
