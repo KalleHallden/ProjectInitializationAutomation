@@ -1,24 +1,14 @@
-### pre-setup:
-```
-create env vars :
-> projects directory as - "mp"
-> Github tocken as      - "gt"
-```
-
-### setup: 
+### Install: 
 ```bash
-git clone "https://github.com/wikyprash/projectInitializerAutomation.git"
-cd projectInitializerAutomation
-pip install -r requirements.txt
+>git clone "https://github.com/KalleHallden/ProjectInitializationAutomation.git"
 
-path:
-"projectInitializerAutomation" folder directory to path
+>setx PATH "%USERPROFILE%\Desktop\ProjectInitializationAutomation\windows_OS\build_executable\dist\create;%PATH%"
 ```
+
 
 ### Usage:
 ```bash
-Command to run the program type
-
-'create <project_name>'
-'create <project_name> <l>'   - for just locally
+To run the script type in 
+        >'create <name of your folder>'
+        >'create <name of your folder> -o l' for local
 ```
