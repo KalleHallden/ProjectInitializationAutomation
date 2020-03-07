@@ -1,3 +1,10 @@
+### pre-setup:
+```
+create env vars :
+Github tocken as  :  "gt"
+```
+
+
 ### Install: 
 ```bash
 >git clone "https://github.com/KalleHallden/ProjectInitializationAutomation.git"
