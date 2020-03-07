@@ -3,12 +3,19 @@
 git clone "https://github.com/KalleHallden/ProjectInitializationAutomation.git"
 cd ProjectInitializationAutomation
 pip install -r requirements.txt
+touch .env
+Then open the .env file and store your username, password, and desired file destination. Use the provided format at the bottom of this README.
 source ~/.my_commands.sh
-Then go to create.py and set the username and password to be your username and password.
-Also make sure to change all directories to your directories so it should be '/Users/<your username>/path/to/your/project'
 ```
 
 ### Usage:
 ```bash
 To run the script type in 'create <name of your folder>'
+```
+
+### Env File Format:
+```bash
+USERNAME="Username123"
+PASSWORD="Password123"
+FILEPATH="/path/to/your/project/"
 ```
