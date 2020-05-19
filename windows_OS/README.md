@@ -9,7 +9,7 @@ Github tocken as  :  "gt"
 ```bash
 >git clone "https://github.com/KalleHallden/ProjectInitializationAutomation.git"
 
->setx PATH "%USERPROFILE%\Desktop\ProjectInitializationAutomation\windows_OS\build_executable\dist\create;%PATH%"
+>add the program to path
 ```
 
 
