@@ -1,15 +1,6 @@
 #!/bin/bash
-
+SCRIPTPATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 function create() {
-    cd
-    source .env
-    python create.py $1
-    cd $FILEPATH$1
-    git init
-    git remote add origin git@github.com:$USERNAME/$1.git
-    touch README.md
-    git add .
-    git commit -m "Initial commit"
-    git push -u origin master
-    code .
+    cd $SCRIPTPATH
+    python3 create.py $1
 }
