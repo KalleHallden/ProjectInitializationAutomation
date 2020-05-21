@@ -1,3 +1,4 @@
 selenium
 PyGithub
 python-dotenv
+pygit2
