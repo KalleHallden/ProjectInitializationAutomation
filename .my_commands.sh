@@ -22,7 +22,7 @@ function create() {
 function delete() { 
     cd
     source /.env #Type the path to your .env file here     
-    python /delete.py $1 #Type the path to the delete.py path here
+    python /remove.py $1 #Type the path to the delete.py path here
     cd $FILEPATH    
     rm -r -f $1    
 
