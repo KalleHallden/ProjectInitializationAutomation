@@ -7,6 +7,7 @@ def choose():
     args = {}
     try:
         args["name"] = str(sys.argv[1])
+        print("Name is set.")
     except IndexError:
         print("Index error, need name. Showing usage")
 
@@ -34,7 +35,29 @@ def choose():
         # Test for -p or --private
         if str(sys.argv[i]) == "-p" or str(sys.argv[i]) == "--private":
             print("Setting repo to private and continuing")
+        
+        # Test for -y or --yes
+        if str(sys.argv[i]) == "-y" or str(sys.argv[i]) == "--yes":
+            print("Will initialize repo automatically, without confirmation message.")
+        
+        print("Done")
 
+
+def general_usage():
+    print("Usage:")
+    print("  create <repo_name> [options]\n")
+
+    print("Commands:")
+    print("  create\t\t\t\tCreate a repository.")
+    print("  remove\t\t\t\tRemove a repository.")
+    print()
+    print("Optional Parameters:")
+    print("  -h, --help")
+    print("  -d, --description\t\t\t\tAdd a description to the remote repository.")
+    print("  -p, --private\t\t\t\tSet remote repository to private.")
+    print("  -l, --local\t\t\t\tCreate a local repository; does not push to Github.")
+    print("\t\t\t\t\tUse only a repository name and this parameter")
+    print("  -y, --yes\t\t\t\tAutomatically initialize repository without confirmation message.")
 
 def help_usage():
     print("Syntax is incorrect.")
