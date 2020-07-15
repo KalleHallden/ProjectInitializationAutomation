@@ -7,40 +7,54 @@ def choose():
     args = {}
     try:
         args["name"] = str(sys.argv[1])
-        print("Name is set.")
     except IndexError:
         print("Index error, need name. Showing usage")
+        general_usage()
 
+    params = {
+        "help" : ["-h", "--help", "help()"],
+        "description" : ["-d", "--description"],
+        "private" : ["-p", "--private"],
+        "local" : ["-l", "--local"],
+        "auto_confirm" : ["-y", "--yes"]
+    }
     for i in range(1, len(sys.argv)):
 
         # Test for -h or --help
-        if str(sys.argv[i]) == "-h" or str(sys.argv[i]) == "--help" or str(sys.argv[i]) == "help()":
-            if len(sys.argv) != 3:
+        if str(sys.argv[i]) in params["help"]:
+            if len(sys.argv) == 2:  # "create -h" prints general usage
+                general_usage()
+            elif len(sys.argv) > 3:    # "create -d -p -h" user doesn't know how to use -h properly
                 help_usage()
-                sys.exit()
-            
-            print("Print either general usage or usage for next arg, exiting this program")
+            else:                   # "create --description --help" proper use for option parameter
+                print("Show optional usage")
+                
+                # try:
+                #     # test for regular syntax --> create [option] --help
+
+                # except:
+                #     # test for reversed syntax --> create --help [option]
+
+            sys.exit(0)
 
         # Test for -l or --local
-        if str(sys.argv[i]) == "-l" or str(sys.argv[i]) == "--local":
+        if str(sys.argv[i]) in params["local"]:
             print("testing if only a name is included")
             if len(sys.argv) != 3:
                 print("you didn't include a name, showing usage and exiting")
             print("Running local, exiting this program")
         
         # Test for -d or --description
-        if str(sys.argv[i]) == "-d" or str(sys.argv[i]) == "--description":
+        if str(sys.argv[i]) in params["description"]:
             print(f"Adding your description: {str(sys.argv[i+1])}")
 
         # Test for -p or --private
-        if str(sys.argv[i]) == "-p" or str(sys.argv[i]) == "--private":
+        if str(sys.argv[i]) in params["private"]:
             print("Setting repo to private and continuing")
         
         # Test for -y or --yes
-        if str(sys.argv[i]) == "-y" or str(sys.argv[i]) == "--yes":
+        if str(sys.argv[i]) in params["auto_confirm"]:
             print("Will initialize repo automatically, without confirmation message.")
-        
-        print("Done")
 
 
 def general_usage():
@@ -52,7 +66,7 @@ def general_usage():
     print("  remove\t\t\t\tRemove a repository.")
     print()
     print("Optional Parameters:")
-    print("  -h, --help")
+    print("  -h, --help\t\t\t\tPrints general usage or usage of a specific option.")
     print("  -d, --description\t\t\t\tAdd a description to the remote repository.")
     print("  -p, --private\t\t\t\tSet remote repository to private.")
     print("  -l, --local\t\t\t\tCreate a local repository; does not push to Github.")
