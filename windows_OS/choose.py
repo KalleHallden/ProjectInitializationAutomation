@@ -2,17 +2,16 @@ import os
 import sys
 
 def choose():
-    print(f"sys.argv --> {str(sys.argv)}")
 
     if len(sys.argv) == 1:
         general_usage()
         sys.exit(0)
 
-    args = {                            # Example input:
+    args = {                            # Example input: create "My repo name" -d "My repo description" -y
         "name" :            "",         # "My repo name"
         "description" :     "",         # "My repo description"
         "publicity" :       "public",   # public
-        "auto_confirm" :    "false"     # true
+        "auto_confirm" :    False       # True
     }
     args["name"] = str(sys.argv[1])
 
@@ -29,14 +28,15 @@ def choose():
         # Test for -h, --help, or help()
         if str(sys.argv[i]) in params["help"]:
 
-            if len(sys.argv) == 2:                              # "create -h" prints general usage
+            if len(sys.argv) == 2:        # "create -h" prints general usage
                 general_usage()
 
-            elif len(sys.argv) > 3:                             # "create -d -p -h" user doesn't know how to use -h properly
+            elif len(sys.argv) > 3:       # "create -d -p -h" user doesn't know how to use -h properly
                 help_usage()
 
-            else:                                               # "create --description --help" proper use for option parameter
-                op_param = str(sys.argv[len(sys.argv) - i]) # len(sys.argv) is 3, checking non help or create param
+            else:                         # "create --description --help" proper use for option parameter
+                # len(sys.argv) is 3, checking non help or create param
+                op_param = str(sys.argv[len(sys.argv) - i])
 
                 if op_param in params["description"]:
                     description_usage()
@@ -57,7 +57,7 @@ def choose():
             sys.exit(0)
 
         # Test for -l or --local
-        if str(sys.argv[i]) in params["local"]:
+        elif str(sys.argv[i]) in params["local"]:
             if len(sys.argv) == 2:      # No name is included ("create -l")
                 print("Naming Error: Repository name not included.")
                 sys.exit(1)
@@ -71,33 +71,31 @@ def choose():
             sys.exit(0)
 
         # Test for -d or --description
-        if str(sys.argv[i]) in params["description"]:
-            # TODO Add description
+        elif str(sys.argv[i]) in params["description"]:
             try:
                 if not is_tag(tag=str(sys.argv[i+1]), dict=params):
-                    args["description"] = str(sys.argv[i+1])
+                    args["description"] = str(sys.argv[i+1])    # If desc. is a tag, leaves it empty
             except IndexError:
                 print("Unknown Option Error: A description tag was used but no description was provided.")
                 sys.exit(1)
-            
-            print(f"Added your description: {str(sys.argv[i+1])}")
 
         # Test for -p or --private
-        if str(sys.argv[i]) in params["private"]:
-            # TODO Set repo to private
+        elif str(sys.argv[i]) in params["private"]:
             args["publicity"] = "private"
-            print("Setting repo to private and continuing")
         
         # Test for -y, --yes, or --auto-confirm
-        if str(sys.argv[i]) in params["auto_confirm"]:
-            # TODO Set repo to push automatically
+        elif str(sys.argv[i]) in params["auto_confirm"]:
             args["auto_confirm"] = "true"
-            print("Set repo to automatically, without confirmation message.")
+        
+        else:
+            # TODO Extra input testing for reduced bugs?
+            pass
     
-    print("Here I am, we finished!!!")
-    print("Oh, and here are the passed arguments:")
-    print(str(args))
-
+    if not args["auto_confirm"]:
+        if not confirm_info(args):
+            sys.exit(0)
+    os.system("python remote.py \"{name}\" \"{description}\" {publicity}".format(**args))
+    
 
 def general_usage():
     print()
@@ -193,6 +191,15 @@ def auto_confirm_usage():
     print("  repository without confirming that the details are correct.")
     print()
     
+def confirm_info(dict):
+    print()
+    print("The following arguments will be passed:")
+    print("  Name:                 {name}".format(**dict))
+    print("  Description:          {description}".format(**dict))
+    print("  Publicity:            {publicity}".format(**dict))
+    print()
+    usr = input("Is this information correct (y/n)? ")
+    return usr.lower() == "y"
 
 def is_tag(tag, dict):
     for key in dict:
