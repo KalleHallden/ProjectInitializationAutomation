@@ -63,7 +63,8 @@ def choose():
                 sys.exit(1)
             elif len(sys.argv) == 3 and i == 2:
                 # TODO Run local.py with name parameter
-                print("Here I am, running local.py with the name parameter.")
+                os.system("python local.py \"{}\"".format(str(sys.argv[1])))
+            
             elif len(sys.argv) == 3 and str(sys.argv[i+1]) in params["help"]:
                 local_usage()
             else:

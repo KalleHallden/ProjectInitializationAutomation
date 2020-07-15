@@ -11,10 +11,9 @@ else:
     repo_publicity = True
 
 
-path = "[Path to workspace here]"
-_dir = path + '\\' + repo_name
+_dir = "{}\\{}".format(os.environ.get("PWFA-Path"), repo_name)
 
-token = "[GitHub Token here]"
+token = os.environ.get("PWFA-Token")
 
 g = Github(token)
 user = g.get_user()

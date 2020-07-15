@@ -1,21 +1,20 @@
-import sys
 import os
+import sys
 
-foldername = str(sys.argv[1])
-path = os.environ.get('mp')
-_dir = path + '/' + foldername
+# Get repository name
+repo_name = str(sys.argv[1])
 
-try:
-    os.mkdir(_dir)
-    os.chdir(_dir)
-    os.system('git init')
-    os.system(f'echo "# {foldername}" > README.md')
-    os.system('git add README.md')
-    os.system('git commit -m "first commit"')
+# Set directory
+_dir = "{}\{}".format(os.environ.get("PWFA-Path"), repo_name)
 
-    print(f'{foldername} created locally')
-    os.system('code .')
+# Create local repository
+os.mkdir(_dir)
+os.chdir(_dir)
+os.system('git init')
+os.system(f'echo # {repo_name} > README.md')
+os.system('git add README.md')
+os.system('git commit -m "Initial commit"')
 
-
-except:
-    print("create <project_name> l")
+# Rejoice Hallelujah!
+print(f'{repo_name} created locally!')
+os.system('code .')

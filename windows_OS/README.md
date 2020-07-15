@@ -1,8 +1,9 @@
 ### pre-setup:
+##### Note I still need to update this.
 ```
 create env vars :
-> projects directory as - "mp"
-> Github tocken as      - "gt"
+> projects directory as - "PWFA-Path"
+> Github tocken as      - "PWFA-Token"
 ```
 
 ### setup: 
