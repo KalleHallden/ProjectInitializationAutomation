@@ -10,7 +10,7 @@ def choose():
     args = {                            # Example input: create "My repo name" -d "My repo description" -y
         "name" :            "",         # "My repo name"
         "description" :     "",         # "My repo description"
-        "publicity" :       "public",   # public
+        "publicity" :       "Public",   # public
         "auto_confirm" :    False       # True
     }
     args["name"] = str(sys.argv[1])
@@ -82,14 +82,15 @@ def choose():
 
         # Test for -p or --private
         elif str(sys.argv[i]) in params["private"]:
-            args["publicity"] = "private"
+            args["publicity"] = "Private"
         
         # Test for -y, --yes, or --auto-confirm
         elif str(sys.argv[i]) in params["auto_confirm"]:
-            args["auto_confirm"] = "true"
+            args["auto_confirm"] = True
         
         else:
             # TODO Extra input testing for reduced bugs?
+            # Or more tags/optional params for the future
             pass
     
     if not args["auto_confirm"]:
