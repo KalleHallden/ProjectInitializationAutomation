@@ -16,6 +16,9 @@ login = user.login
 list = ["-l", "--list"]
 
 def remove():
+
+    """Remove remote repository"""
+
         # remove -l, --list
         if str(sys.argv[1]) in list:
             pos = 0
@@ -29,7 +32,7 @@ def remove():
         else:
             try:
                 git_url = "https://github.com/"
-                # remove -3
+                # remove -X
                 if str(sys.argv[1]).startswith("-") and str(sys.argv[1])[1:].isnumeric():
                     passed_int = int(str(sys.argv[1])[1:])
                     repo_url =  "{}{}".format(git_url, user.get_repos()[passed_int - 1].full_name)
@@ -46,6 +49,9 @@ def remove():
             except:
                 print("Error in processing request")
             print()
+
+        """Remove local repository"""
+        
 
 def delete_repo(repo_name):
     print()

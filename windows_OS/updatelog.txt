@@ -8,3 +8,8 @@ adding the option to have repo names with spaces in it
 / user comfortability. Also, I'm new to pull requests,
 if you couldn't already tell by this crappy txt.
 Ok thx, bye
+
+So since I'm getting close to finishing, just pointing
+out that I'll be deleting this file. Something like this
+will be found in the description of the pull request, whenever
+I make it, probably some time tonight
