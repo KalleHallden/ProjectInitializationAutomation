@@ -1,8 +1,7 @@
 @echo off
-
-pushd
-cd /d %~dp0
 setlocal
+
+cd /d %~dp0
 
 rem pyParams variable to contain python script's parameters
 rem Helper flag for parameter presence. default to 0/FALSE.
@@ -28,5 +27,6 @@ if %prmOk% == 0 (
 )
 
 python %pyName%.py%pyParams%
-popd
+
+cd ..
 :eof

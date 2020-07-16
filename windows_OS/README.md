@@ -1,4 +1,4 @@
-## Pre-setup:
+# Pre-setup:
 
 ### Create user variables
 
@@ -21,7 +21,7 @@ For example:
 > setx PWFA-Path "ThisIsMyTokenInQuotes"
 ```
 Either way, you'll have to reset your pc before using them.
-## Setup: 
+# Setup: 
 ```bash
 git clone "https://github.com/Red-CS/ProjectInitializationAutomation.git"
 cd projectInitializerAutomation
@@ -31,9 +31,9 @@ If you are on Windows, which you probably are, be sure to add the "projectInitia
 folder directory to path, instead you will use the files meant for Mac
 ```
 
-## Usage:
+# Usage:
+## Create
 #### General Use
-
 Basically, the core of the command is this:
 ```
 create <repository name> [options]
@@ -64,8 +64,7 @@ OR
 create "My Local Repository" --local
 ```
 Note that it follows that strict syntax (create [repo name] -l/--local)
-
-## Example
+### Example
 Say I wanted to build a remote repository named "Subscribe to Kalle Halden" with a description of "Leave a like and comment!" We'll set as public, too. Just type:
 ```
 create "Subscribe to Kalle Halden" -d "Leave a like and comment!"
@@ -87,7 +86,7 @@ If you want to skip that auto confirmation, just add one of the following to the
 ```
 I recommend doing this for longer repository names and descriptions.
 
-## Troubleshooting and Help
+### Troubleshooting and Help
 If you ever need more info on a tag, type either:
 ```
 -h     --help     help()
@@ -104,4 +103,52 @@ OR
 create -h / --help / help()
 ```
 will bring up general usage for all tags and commands.
+## Remove
+#### General Use
+```
+remove <repository name>
+```
+Yes, it's that simple. As of this version, you are can remove just the remote repository. Your passed repository name has to match GitHub's version of it. For example:
 
+If you called
+```
+create "Subscribe To Kalle"
+```
+Github would read it as
+```
+Subscribe-To-Kalle
+```
+
+To remove this repostory, simply type:
+```
+remove Subscribe-To-Kalle
+```
+to see a warning and confirmation message to remove the repository remotely.
+#### Other Parameters
+Let's say you forget the name of the repository you're trying to delete. Typing:
+```
+remote -l
+OR
+remote --list
+```
+shows a numbered list of your repositories.
+```
+> remove --list
+
+  1.   Like
+  2.   Comment
+  3.   Share
+  4.   And-Subscribe
+
+  ```
+You can use this to delete repositories by position. For example, say you wanted to delete repository #4, "And-Subscribe". Enter:
+```
+> remove -4
+
+
+Warning!
+  Executing this command would remove https://github.com/User/And-Subscribe
+
+
+Are you sure you want to delete this repository (y/n)? y
+Deleted repository https://github.com/User/And-Subscribe

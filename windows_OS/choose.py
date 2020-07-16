@@ -89,8 +89,8 @@ def choose():
             args["auto_confirm"] = True
         
         else:
-            # TODO Extra input testing for reduced bugs?
-            # Or more tags/optional params for the future
+            # TODO More tags/optional params for the future.
+            # That's up to you, creator!
             pass
     
     if not args["auto_confirm"]:
@@ -119,7 +119,8 @@ def general_usage():
 
 def help_usage():
     print()
-    print("Syntax is incorrect.")
+    print("Syntax Error: Help tag is used incorrectly.")
+    print()
     print("Usage:")
     print("  create -h")
     print("  create --help")

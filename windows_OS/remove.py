@@ -3,7 +3,7 @@ import sys
 from github import Github
 
 if len(sys.argv) != 2:
-    print("Syntax incorrect")
+    print("Syntax Error")
     sys.exit(1)
 
 # Log in
@@ -48,15 +48,29 @@ def remove():
             print()
 
 def delete_repo(repo_name):
-    for x in range(0, 3): print()
+    print()
+    print()
     print("Warning!")
     print(f"  Executing this command would remove {repo_name}")
+    print()
     print()
     usr = input("Are you sure you want to delete this repository (y/n)? ")
     return usr.lower() == "y"
 
 def general_usage():
-    pass
+    print()
+    print("Usage:")
+    print("  remove <options>\n")
+
+    print("Commands:")
+    print("  create\t\t\t\tCreate a repository.")
+    print("  remove\t\t\t\tRemove a repository.")
+    print()
+    print("Required Parameters:")
+    print("  -l, --list\t\t\t\tPrints a list of your remote repositories.")
+    print("  -X        \t\t\t\tRemoves the Xth repository. View list by typing \"remove -l\".")
+    print("  <repository name> \t\t\tRemoves the remote repository with the given name.")
+    print()
     
 if __name__ == "__main__":
     remove()
