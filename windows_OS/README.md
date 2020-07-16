@@ -9,6 +9,9 @@ Go to
 > Click "New" in User variables (the top one)
 > Set name as "PWFA-Path"
 > Set value as your workspace path
+> Get a token here: https://github.com/settings/tokens/new
+  > Must have repo, user, and delete_repo permissions
+> Set "PWFA-Token" to the given token.
 ```
 #### Through CMD
 ```

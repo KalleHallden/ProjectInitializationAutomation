@@ -1,5 +1,6 @@
 @echo off
 
+pushd
 cd /d %~dp0
 setlocal
 
@@ -27,5 +28,5 @@ if %prmOk% == 0 (
 )
 
 python %pyName%.py%pyParams%
-
+popd
 :eof

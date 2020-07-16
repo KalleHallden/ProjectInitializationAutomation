@@ -7,7 +7,9 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 # Log in
-g = Github("b89f916c23a7287dd7b637c90075863cd8c872c3")
+token = os.environ.get("PWFA-Token")
+
+g = Github(token)
 user = g.get_user()
 login = user.login
 
@@ -53,7 +55,8 @@ def delete_repo(repo_name):
     usr = input("Are you sure you want to delete this repository (y/n)? ")
     return usr.lower() == "y"
 
-def general_usage()
+def general_usage():
+    pass
     
 if __name__ == "__main__":
     remove()
