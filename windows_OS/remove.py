@@ -51,8 +51,8 @@ def remove():
                     user.get_repo(passed_str).delete()
                     print(f"Deleted repository {repo_url}")
         except:
-            print("Error in processing request")
-            print()
+            # TODO Run refactor local to test other possible repo name
+            print(f"Naming Error: Error in finding remote repository \"{l_repo_name}\"")
             sys.exit(1)
 
     if not continue_local():
@@ -106,14 +106,16 @@ def delete_local(path_stem, path_head):
     for dirpath, dirnames, filename in os.walk((path_stem + "\\" + path_head), topdown=False):
         for file in filename:
             try:
-                os.remove("{}\\{}\\{}".format(path_stem, path_head, file))
+                os.remove("{}\\{}".format(dirpath, file))
             except:
-                print(f"Failed with removing {path_head}\\{file}")
+                print(f"Failed with removing {dirpath}\\{file}")
                 print("Passed:")
-                print("  {}\\{}\\{}".format(path_stem, path_head, file))
+                print("  {}\\{}".format(dirpath, file))
                 sys.exit(1)
             else:
+                # TODO Fix issue where subdirectories containing files aren't shown
                 print(f"  Deleted:   {path_head}\\{file}")
+    print("Next step is to delete local repo")
 
 
 

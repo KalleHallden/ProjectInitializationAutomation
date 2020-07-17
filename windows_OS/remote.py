@@ -22,13 +22,10 @@ repo = user.create_repo(name=repo_name,
                         description=repo_description,
                         private=repo_publicity)
 
-try:
+
+if not os._isdir(_dir):
     os.mkdir(_dir)
-except FileExistsError:
-    print(f"{_dir} already exists.")
-    sys.exit(1)
-else:
-    os.chdir(_dir)
+os.chdir(_dir)
 
 commands = [f'echo # {repo.name} >> README.md',
             'git init',

@@ -8,7 +8,8 @@ repo_name = str(sys.argv[1])
 _dir = "{}\{}".format(os.environ.get("PWFA-Path"), repo_name)
 
 # Create local repository
-os.mkdir(_dir)
+if not os._isdir(_dir):
+    os.mkdir(_dir)
 os.chdir(_dir)
 os.system('git init')
 os.system(f'echo # {repo_name} > README.md')
