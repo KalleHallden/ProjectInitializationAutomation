@@ -5,7 +5,7 @@ from github import Github
 # Set variables
 repo_name = str(sys.argv[1])
 repo_description = str(sys.argv[2])
-if str(sys.argv[3]) == "public":
+if str(sys.argv[3]) == "Public":
     repo_publicity = False
 else:
     repo_publicity = True
@@ -22,8 +22,13 @@ repo = user.create_repo(name=repo_name,
                         description=repo_description,
                         private=repo_publicity)
 
-os.mkdir(_dir)
-os.chdir(_dir)
+try:
+    os.mkdir(_dir)
+except FileExistsError:
+    print(f"{_dir} already exists.")
+    sys.exit(1)
+else:
+    os.chdir(_dir)
 
 commands = [f'echo # {repo.name} >> README.md',
             'git init',
