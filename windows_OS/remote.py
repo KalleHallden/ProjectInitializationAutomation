@@ -23,7 +23,7 @@ repo = user.create_repo(name=repo_name,
                         private=repo_publicity)
 
 
-if not os._isdir(_dir):
+if not os.path.isdir(_dir):
     os.mkdir(_dir)
 os.chdir(_dir)
 
@@ -37,6 +37,7 @@ commands = [f'echo # {repo.name} >> README.md',
 for c in commands:
     os.system(c)
 
+# TODO Add file path instead of "created locally"
 print(f'Repository "{repo_name}" created locally and pushed to GitHub!')
 print(f"Check it out at https://github.com/{login}/{repo.name}.git")
 os.system('code .')

@@ -1,8 +1,7 @@
 import os
+import stat
 import sys
 from github import Github
-
-
 
 if len(sys.argv) != 2:
     print("Syntax Error")
@@ -60,21 +59,23 @@ def remove():
     
     """Remove local repository"""
 
+    # path = "{}\\\\{}".format(os.environ.get("PWFA-Path"), l_repo_name)
+    # path = os.environ.get(f"{PWFA-Path}\\{l_repo_name}")
     path = os.environ.get("PWFA-Path")
+    print(f"path --> {path}")
 
     # Try searching for a local Repos with spaces or dashes
-    if os.path.isdir(f"{path}\\{l_repo_name}"):
+    if os.path.isdir(f"{path}\\\\{l_repo_name}"):
+        path += "\\\\" + l_repo_name
         if delete_repo(l_repo_name):
-            delete_local(path, l_repo_name)
+            rmtree(path, l_repo_name)
     elif os.path.isdir(f"{path}\\{refactor_local(l_repo_name)}"):
         l_repo_name = refactor_local(l_repo_name)
+        path += "\\\\" + l_repo_name
         if delete_repo(l_repo_name):
-            delete_local(path, l_repo_name)
+            rmtree(path, l_repo_name)
     else:
         print("Nope, DNE")
-
-
-
 
 def delete_repo(repo_name):
     print()
@@ -101,21 +102,22 @@ def refactor_local(repo_name):
             local_name += char
     return local_name
 
-def delete_local(path_stem, path_head):
+def rmtree(top, dir_name):
     print()
-    for dirpath, dirnames, filename in os.walk((path_stem + "\\" + path_head), topdown=False):
-        for file in filename:
-            try:
-                os.remove("{}\\{}".format(dirpath, file))
-            except:
-                print(f"Failed with removing {dirpath}\\{file}")
-                print("Passed:")
-                print("  {}\\{}".format(dirpath, file))
-                sys.exit(1)
-            else:
-                # TODO Fix issue where subdirectories containing files aren't shown
-                print(f"  Deleted:   {path_head}\\{file}")
-    print("Next step is to delete local repo")
+    for root, dirs, files in os.walk(top, topdown=False):
+        relative_path = root[root.index(dir_name):]
+        for name in files:
+            filename = os.path.join(root, name)
+            os.chmod(filename, stat.S_IWUSR)
+            os.remove(filename)
+            print("  Deleted File:        {}\\{}".format(relative_path, name))
+        for name in dirs:
+            os.rmdir(os.path.join(root, name))
+            print("  Deleted Directory:   {}\\{}".format(relative_path, name))
+    os.rmdir(top) 
+    print()
+    print(f"  Deleted Parent Directory:    {top}")
+    print()
 
 
 
