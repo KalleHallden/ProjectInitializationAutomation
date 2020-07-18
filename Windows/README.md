@@ -8,11 +8,13 @@ Go to
 > environment vairables
 > Click "New" in User variables (the top one)
 > Set name as "PWFA-Path"
-> Set value as your workspace path
+> Set value as your workspace path (use double backslash (\\) as path separators)
 > Get a token here: https://github.com/settings/tokens/new
   > Must have repo, user, and delete_repo permissions
 > Set "PWFA-Token" to the given token.
 ```
+You can, of course, name these whatever you'd like. Just be sure to go through
+remote.py, local.py, and remove.py and change that argument.
 #### Through CMD
 ```
 > setx [user variable name] "[user variable token]
@@ -22,7 +24,7 @@ For example:
 ```
 Either way, you'll have to reset your pc before using them.
 # Setup: 
-```bash
+```
 git clone "https://github.com/Red-CS/ProjectInitializationAutomation.git"
 cd projectInitializerAutomation
 pip install -r requirements.txt
@@ -152,3 +154,6 @@ Warning!
 
 Are you sure you want to delete this repository (y/n)? y
 Deleted repository https://github.com/User/And-Subscribe
+```
+# Authors
+Windows files created by Red Williams (Red-CS)[https://github.com/Red-CS] and sharers of previously commited pull requests. See pull request history for more.

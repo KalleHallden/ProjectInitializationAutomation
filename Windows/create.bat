@@ -1,14 +1,18 @@
 @echo off
 setlocal
-
 cd /d %~dp0
+
+rem Author: Red Williams (Red-CS)
+rem Email:  red.devcs@gmail.com
+
+rem July 18, 2020
 
 rem pyParams variable to contain python script's parameters
 rem Helper flag for parameter presence. default to 0/FALSE.
 set prmOk=0
 
 rem Variable to contain python script name to use. default is remote.
-set pyName=remove
+set pyName=choose
 
 rem Process batch parameters
 :getParam
@@ -27,6 +31,4 @@ if %prmOk% == 0 (
 )
 
 python %pyName%.py%pyParams%
-
-cd ..
 :eof
