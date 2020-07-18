@@ -1,15 +1,19 @@
 import os
 import stat
 import sys
+
+from colorama import init, Fore, Style
 from github import Github
 
+init()
+
+# Check for only 2 arguments
 if len(sys.argv) != 2:
     print("Syntax Error")
     sys.exit(1)
 
 # Log in
 token = os.environ.get("PWFA-Token")
-
 g = Github(token)
 user = g.get_user()
 login = user.login
@@ -17,7 +21,6 @@ login = user.login
 list = ["-l", "--list"]
 
 def remove():
-
     """Remove remote repository"""
 
     # remove -l, --list
@@ -27,25 +30,34 @@ def remove():
         for repo in user.get_repos():
             pos += 1
             print(f"  {pos}.   {repo.name}")
-        print()
-            
+        print()      
         sys.exit(0)
     else:
         try:
             git_url = "https://github.com/"
+
             # remove -X
-            if str(sys.argv[1]).startswith("-") and str(sys.argv[1])[1:].isnumeric():
+            if (
+                str(sys.argv[1]).startswith("-") and 
+                str(sys.argv[1])[1:].isnumeric()
+               ):
                 passed_int = int(str(sys.argv[1])[1:])
-                l_repo_name = user.get_repos()[passed_int - 1].name # For removing local
-                repo_url =  "{}{}".format(git_url, user.get_repos()[passed_int - 1].full_name)
+                l_repo_name = user.get_repos()[passed_int - 1].name
+                repo_url =  "{}{}".format(git_url, 
+                                          user.get_repos()[passed_int - 1].full_name)
+                
+                # Confirm deletion
                 if delete_repo(repo_url):
                     user.get_repos()[passed_int - 1].delete()
                     print(f"Deleted repository {repo_url}")
             else:
             # remove repoName
                 passed_str = str(sys.argv[1])
-                l_repo_name = passed_str    # For removing local
-                repo_url = "{}{}".format(git_url, user.get_repo(passed_str).full_name)
+                l_repo_name = passed_str
+                repo_url = "{}{}".format(git_url, 
+                                         user.get_repo(passed_str).full_name)
+
+                # Confirm deletion
                 if delete_repo(repo_url):
                     user.get_repo(passed_str).delete()
                     print(f"Deleted repository {repo_url}")
@@ -54,37 +66,38 @@ def remove():
             print(f"Naming Error: Error in finding remote repository \"{l_repo_name}\"")
             sys.exit(1)
 
+    # Move on to local or exit
     if not continue_local():
         sys.exit(0)
     
     """Remove local repository"""
 
-    # path = "{}\\\\{}".format(os.environ.get("PWFA-Path"), l_repo_name)
-    # path = os.environ.get(f"{PWFA-Path}\\{l_repo_name}")
     path = os.environ.get("PWFA-Path")
-    print(f"path --> {path}")
 
-    # Try searching for a local Repos with spaces or dashes
+    # Search local repos with dashes
     if os.path.isdir(f"{path}\\\\{l_repo_name}"):
         path += "\\\\" + l_repo_name
+        # Delete if selected
         if delete_repo(l_repo_name):
             rmtree(path, l_repo_name)
+    # Search local repos with spaces
     elif os.path.isdir(f"{path}\\{refactor_local(l_repo_name)}"):
         l_repo_name = refactor_local(l_repo_name)
         path += "\\\\" + l_repo_name
+        # Delete if selected
         if delete_repo(l_repo_name):
             rmtree(path, l_repo_name)
     else:
+        # Local repository not found
+        # TODO change print statement here
         print("Nope, DNE")
 
 def delete_repo(repo_name):
     print()
-    print()
-    print("Warning!")
-    print(f"  Executing this command would remove {repo_name}")
-    print()
-    print()
-    usr = input("Are you sure you want to delete this repository (y/n)? ")
+    print(Fore.RED)
+    print(f"Warning! Executing this command would remove {repo_name}")
+    print("Are you sure you want to delete this repository (y/n)? ", end=Style.RESET_ALL)
+    usr = input()
     return usr.lower() == "y"
 
 def continue_local():
