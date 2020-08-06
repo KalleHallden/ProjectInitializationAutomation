@@ -42,19 +42,19 @@ create <repository name> [options]
 ```
 The repository name can now have spaces! Just be sure to put them in quotes:
 ```
-create "Subscribe to Kalle Halden"
+create "Subscribe to Kalle Hallden"
 ```
 #### Descriptions
 Additonally, it's nice to give you're repository a description, yeah? You can type:
 ```
-create "Subscribe to Kalle Halden" -d "Remember to like and comment"
+create "Subscribe to Kalle Hallden" -d "Remember to like and comment"
 OR
-create "Subscribe to Kalle Halden" --description "Share with your friends!"
+create "Subscribe to Kalle Hallden" --description "Share with your friends!"
 ```
 #### Private Repositories
 Want to set your repo to private? Just add -p or --private
 ```
-create "Subscribe to Kalle Halden" -d "Like the video" -p.
+create "Subscribe to Kalle Hallden" -d "Like the video" -p.
 > Initializes a Github repository set to private.
 ```
 Don't include this tag for public repos, those are the default.
@@ -67,14 +67,14 @@ create "My Local Repository" --local
 ```
 Note that it follows that strict syntax (create [repo name] -l/--local)
 ### Example
-Say I wanted to build a remote repository named "Subscribe to Kalle Halden" with a description of "Leave a like and comment!" We'll set as public, too. Just type:
+Say I wanted to build a remote repository named "Subscribe to Kalle Hallden" with a description of "Leave a like and comment!" We'll set as public, too. Just type:
 ```
-create "Subscribe to Kalle Halden" -d "Leave a like and comment!"
+create "Subscribe to Kalle Hallden" -d "Leave a like and comment!"
 ```
 You'll see a message on Command prompt that looks like this:
 ```
 The following arguments will be passed:
-  Name:                 Subscribe to Kalle Halden
+  Name:                 Subscribe to Kalle Hallden
   Description:          Leave a like and comment!
   Publicity:            Public
 
