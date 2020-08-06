@@ -1,0 +1,159 @@
+# Pre-setup:
+
+### Create user variables
+
+#### Manually
+```
+Go to 
+> environment vairables
+> Click "New" in User variables (the top one)
+> Set name as "PWFA-Path"
+> Set value as your workspace path (use double backslash (\\) as path separators)
+> Get a token here: https://github.com/settings/tokens/new
+  > Must have repo, user, and delete_repo permissions
+> Set "PWFA-Token" to the given token.
+```
+You can, of course, name these whatever you'd like. Just be sure to go through
+remote.py, local.py, and remove.py and change that argument.
+#### Through CMD
+```
+> setx [user variable name] "[user variable token]
+
+For example:
+> setx PWFA-Path "ThisIsMyTokenInQuotes"
+```
+Either way, you'll have to reset your pc before using them.
+# Setup: 
+```
+git clone "https://github.com/Red-CS/ProjectInitializationAutomation.git"
+cd projectInitializerAutomation
+pip install -r requirements.txt
+
+If you are on Windows, which you probably are, be sure to add the "projectInitializerAutomation\windows_OS" 
+folder directory to path, instead you will use the files meant for Mac
+```
+
+# Usage:
+## Create
+#### General Use
+Basically, the core of the command is this:
+```
+create <repository name> [options]
+```
+The repository name can now have spaces! Just be sure to put them in quotes:
+```
+create "Subscribe to Kalle Hallden"
+```
+#### Descriptions
+Additonally, it's nice to give you're repository a description, yeah? You can type:
+```
+create "Subscribe to Kalle Hallden" -d "Remember to like and comment"
+OR
+create "Subscribe to Kalle Hallden" --description "Share with your friends!"
+```
+#### Private Repositories
+Want to set your repo to private? Just add -p or --private
+```
+create "Subscribe to Kalle Hallden" -d "Like the video" -p.
+> Initializes a Github repository set to private.
+```
+Don't include this tag for public repos, those are the default.
+#### Local Repositories
+Creating a local repository is as simple as typing:
+```
+create "My Local Repository" -l
+OR
+create "My Local Repository" --local
+```
+Note that it follows that strict syntax (create [repo name] -l/--local)
+### Example
+Say I wanted to build a remote repository named "Subscribe to Kalle Hallden" with a description of "Leave a like and comment!" We'll set as public, too. Just type:
+```
+create "Subscribe to Kalle Hallden" -d "Leave a like and comment!"
+```
+You'll see a message on Command prompt that looks like this:
+```
+The following arguments will be passed:
+  Name:                 Subscribe to Kalle Hallden
+  Description:          Leave a like and comment!
+  Publicity:            Public
+
+Is this information correct (y/n)? 
+```
+Simply type "y" or "Y" and your remote Repository will be instantiated.
+
+If you want to skip that auto confirmation, just add one of the following to the end of the command:
+```
+-y     --yes     --auto-confirm
+```
+I recommend doing this for longer repository names and descriptions.
+
+### Troubleshooting and Help
+If you ever need more info on a tag, type either:
+```
+-h     --help     help()
+```
+after a tag. For example:
+```
+create -d -h
+> Outputs description tag usage
+```
+Additionally, just typing
+```
+create
+OR
+create -h / --help / help()
+```
+will bring up general usage for all tags and commands.
+## Remove
+#### General Use
+```
+remove <repository name>
+```
+Yes, it's that simple. As of this version, you are can remove just the remote repository. Your passed repository name has to match GitHub's version of it. For example:
+
+If you called
+```
+create "Subscribe To Kalle"
+```
+Github would read it as
+```
+Subscribe-To-Kalle
+```
+
+To remove this repostory, simply type:
+```
+remove Subscribe-To-Kalle
+```
+to see a warning and confirmation message to remove the repository remotely.
+#### Other Parameters
+Let's say you forget the name of the repository you're trying to delete. Typing:
+```
+remote -l
+OR
+remote --list
+```
+shows a numbered list of your repositories.
+```
+> remove --list
+
+  1.   Like
+  2.   Comment
+  3.   Share
+  4.   And-Subscribe
+
+  ```
+You can use this to delete repositories by position. For example, say you wanted to delete repository #4, "And-Subscribe". Enter:
+```
+> remove -4
+
+
+Warning!
+  Executing this command would remove https://github.com/User/And-Subscribe
+
+
+Are you sure you want to delete this repository (y/n)? y
+Deleted repository https://github.com/User/And-Subscribe
+```
+# Authors
+Windows files created by Red Williams (Red-CS)[https://github.com/Red-CS] and sharers of previously commited pull requests. See pull request history for more.
