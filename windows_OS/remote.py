@@ -27,7 +27,7 @@ if sys.argv[2] == "g":
         os.system(c)
 
     print(f'{foldername} created locally')
-    os.system('code .')
+    os.system('code .') # add github token to the env vars
 
 else:
     print("create <fldername>")
