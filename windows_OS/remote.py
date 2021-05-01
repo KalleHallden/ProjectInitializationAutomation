@@ -30,4 +30,4 @@ if sys.argv[2] == "g":
     os.system('code .')
 
 else:
-    print("create <fldername>")
+    print("create <foldername>")
