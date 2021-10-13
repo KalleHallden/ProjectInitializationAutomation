@@ -2,7 +2,7 @@
 ```
 create env vars :
 > projects directory as - "mp"
-> Github tocken as      - "gt"
+> Github token as      - "gt"
 ```
 
 ### setup: 
