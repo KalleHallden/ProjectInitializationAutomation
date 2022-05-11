@@ -14,7 +14,8 @@ def create():
     os.makedirs(path + str(folderName))
     user = Github(username, password).get_user()
     repo = user.create_repo(folderName)
-    print("Succesfully created repository {}".format(folderName))
+    # f strings 
+    print(f"Succesfully created repository {folderName}")
 
 if __name__ == "__main__":
     create()
