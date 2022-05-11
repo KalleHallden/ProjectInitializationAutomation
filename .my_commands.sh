@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function create() {
-    cd
+
     source .env
     python create.py $1
     cd $FILEPATH$1
