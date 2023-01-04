@@ -1,21 +1,33 @@
-### Install: 
+## Installation and usage
+
+
+### Clone the repository:
 ```bash
 git clone "https://github.com/KalleHallden/ProjectInitializationAutomation.git"
 cd ProjectInitializationAutomation
+```
+
+### Install the required dependencies:
+```bash
 pip install -r requirements.txt
-touch .env
-Then open the .env file and store your username, password, and desired file destination. Use the provided format at the bottom of this README.
-source ~/.my_commands.sh
 ```
 
-### Usage:
+### Create a configuration file (e.g. config.ini) with the following format:
 ```bash
-To run the script type in 'create <name of your folder>'
+[github]
+username = your_github_username
+password = your_github_password
+
+[local]
+file_path = /path/to/local/folder
 ```
 
-### Env File Format:
+### Run create.py or remote.py with the desired arguments:
 ```bash
-USERNAME="Username123"
-PASSWORD="Password123"
-FILEPATH="/path/to/your/project/"
+python create.py <folder_name> <config_file_path>
+```
+
+### To create a repository only on GitHub using remote.py, run the following command:
+```bash
+python remote.py <folder_name> <config_file_path>
 ```
