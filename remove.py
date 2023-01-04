@@ -1,26 +1,21 @@
 import sys
-from selenium import webdriver
+import os
+import requests
 
-username = sys.argv[1]
-password = sys.argv[2]
-reponame = sys.argv[3]
+# Extract repository name and GitHub credentials from command line arguments
+reponame = sys.argv[1]
+username = sys.argv[2]
+password = sys.argv[3]
 
-browser = webdriver.Chrome()
-browser.get('http://github.com/login')
+# Set up authentication for the GitHub API
+auth = (username, password)
+headers = {'Accept': 'application/vnd.github+json'}
 
+# Delete the repository using the GitHub API
+response = requests.delete(f'https://api.github.com/repos/{username}/{reponame}', auth=auth, headers=headers)
 
-def remove():
-    browser.find_elements_by_xpath("//input[@name='login']")[0].send_keys(username)
-    browser.find_elements_by_xpath("//input[@name='password']")[0].send_keys(password)
-    browser.find_elements_by_xpath("//input[@name='commit']")[0].click()
-    browser.get('https://github.com/' + username + '/' + reponame + '/settings')
-    browser.find_elements_by_xpath('//*[@id="options_bucket"]/div[9]/ul/li[4]/details/summary')[0].click()
-    browser.find_elements_by_xpath(
-        '//*[@id="options_bucket"]/div[9]/ul/li[4]/details/details-dialog/div[3]/form/p/input')[0].send_keys(username + "/" + reponame)
-    browser.find_elements_by_xpath(
-        '//*[@id="options_bucket"]/div[9]/ul/li[4]/details/details-dialog/div[3]/form/button')[0].click()
-    browser.get("https://github.com/" + username)
-
-
-if __name__ == "__main__":
-    remove()
+# Check the status code of the response
+if response.status_code == 204:
+    print(f'Successfully deleted repository {reponame}')
+else:
+    print(f'Failed to delete repository {reponame}')
