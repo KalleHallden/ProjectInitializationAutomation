@@ -15,8 +15,7 @@ pip install -r requirements.txt
 ### Create a configuration file (e.g. config.ini) with the following format:
 ```bash
 [github]
-username = your_github_username
-password = your_github_password
+token = your_personal_access_token
 
 [local]
 file_path = /path/to/local/folder
