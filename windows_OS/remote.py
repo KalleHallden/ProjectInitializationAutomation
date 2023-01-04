@@ -1,23 +1,19 @@
-# remote.py
-
 import sys
 import os
+import configparser
 from github import Github
 
-def create_repository(username, password, foldername):
-    # Authenticate to GitHub
-    g = Github(username, password)
+def create_repository(token, foldername):
+    # Authenticate to GitHub with a personal access token
+    g = Github(token)
     user = g.get_user()
 
     # Create a new repository on GitHub
     repo = user.create_repo(foldername)
 
-def create_local_repository(foldername):
-    # Set file path from an environment variable
-    path = os.environ.get('mp')
-
+def create_local_repository(foldername, file_path):
     # Construct the full path to the new folder
-    _dir = path + '/' + foldername
+    _dir = file_path + '/' + foldername
 
     # Create the new folder and change the current working directory to it
     os.mkdir(_dir)
@@ -34,16 +30,20 @@ def create_local_repository(foldername):
     os.system('code .')
 
 def remote():
-    # Extract folder name and GitHub credentials from command line arguments
+    # Extract folder name and file path from command line arguments
     foldername = str(sys.argv[1])
-    username = sys.argv[2]
-    password = sys.argv[3]
+    file_path = str(sys.argv[2])
+
+    # Read the personal access token from a configuration file
+    config = configparser.ConfigParser()
+    config.read(file_path)
+    token = config['github']['token']
 
     # Create the repository on GitHub
-    create_repository(username, password, foldername)
+    create_repository(token, foldername)
 
     # Create the local repository
-    create_local_repository(foldername)
+    create_local_repository(foldername, file_path)
 
 if __name__ == "__main__":
     remote()
